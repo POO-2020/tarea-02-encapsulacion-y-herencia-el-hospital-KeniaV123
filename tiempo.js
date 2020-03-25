@@ -1,36 +1,36 @@
-export default class Tiempo {
-
-
+export default class Tiempo{
     /**
- * @param {number} hora
- * @param {number} minutos
- * @param {string} periodo
- */
-
-    constructor( hora, minutos, periodo ){
-        this.hora = hora;
-        this.minutos = minutos; 
-        this.periodo = periodo; 
-
-        this.horas = [
-            0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,
-            "00"
-        ];
+     * 
+     * @param {number} hora La hora
+     * @param {number} minutos  los minutos
+     */
+    constructor(hora,minutos){
+        this._periodo=["am","pm"];
+        this._hora=hora;
+        this._minutos=minutos;
     }
     getFormato12(){
-        if(this.periodo == "AM"){ 
-            return `${this.hora}:${this.minutos} ${this.periodo}`;
+        if (this._hora>=12 && this._hora<=23)
+        {
+            if(this._hora==12)
+            {
+                return (`${this._hora}:${this._minutos} ${this._periodo[1]}`);
+            }
+            else{
+                var hora = this._hora-12;
+            }
+            
+            return (`${hora}:${this._minutos} ${this._periodo[1]}`);
+        }
+        else if (this._hora==24){
+
+            return (`00:${this._minutos} ${this._periodo[0]}`);
         }
         else{
-            return `${this.hora}:${this.minutos} ${this.periodo}`;
+            return (`${this._hora}:${this._minutos} ${this._periodo[0]}`);
         }
     }
     getFormato24(){
-        if(this.periodo == "AM"){ 
-            return `${this.horas[this.hora]}:${this.minutos}`;
-        }
-        else{
-            return `${this.horas[this.hora + 12 ]}:${this.minutos}`;        
-        }
+        return (`${this._hora}:${this._minutos}`)
     }
 }
