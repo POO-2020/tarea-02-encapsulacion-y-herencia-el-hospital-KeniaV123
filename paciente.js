@@ -1,6 +1,3 @@
-import Nombre from "./nombre.js";
-import Fecha from "./fecha.js";
-
 
 export default class Paciente {
 
@@ -11,15 +8,15 @@ export default class Paciente {
  */
 
 
-    constructor (nombre, fechaNacimiento, telefono ){
-        this.nombre = nombre;
-        this.fechaNacimiento = fechaNacimiento;
-        this.telefono = telefono;
+    constructor ({nombre, fechaNacimiento, telefono }){
+        this._nombre = nombre;
+        this._fechaNacimiento = fechaNacimiento;
+        this._telefono = telefono;
 
 
     }
-   getPerfil (){
-       return (`Nombre del paciente: ${this.nombre.getNombreCompleto()}, Fecha de nacimiento:${this.fechaNacimiento.getFecha()}, Telefono:${this.telefono}`)
-   
-     }
- }
+    getPerfil(){
+        var telefonoString= this._telefono.toString();
+        return (`${this._nombre.getNombreCompleto()}, ${this._fechaNacimiento.getFecha()}, ${telefonoString.slice(0,3)}-${telefonoString.slice(3,6)}-${telefonoString.slice(6,10)}`);
+    }
+}

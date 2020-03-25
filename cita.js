@@ -1,26 +1,18 @@
-import Fecha from "./fecha.js";
-import Tiempo from "./tiempo.js";
-import Doctor from "./doctor.js";
-import Paciente from "./paciente.js";
-import Nombre from "./nombre.js";
-
-export default class Cita {
-
-/**
- * @param {Fecha} fecha
- * @param {Tiempo} hora
- * @param {Doctor} doctor
- * @param {Paciente} paciente 
- */
-
-    constructor(fecha, hora, doctor, paciente){
-        this.fecha = fecha;
-        this.hora = hora;
-        this.doctor = doctor;
-        this.paciente = paciente;
+export default class Cita{
+    /**
+     * 
+     * @param {Fecha} fecha 
+     * @param {Tiempo} hora 
+     * @param {Nombre} doctor Nombre del doctor
+     * @param {Nombre} paciente nombre del paciente
+     */
+    constructor({fecha,hora,doctor,paciente}){
+        this._fecha= fecha;
+        this._hora=hora;
+        this._doctor=doctor;
+        this._paciente=paciente;
     }
-    getCita(){
-        return `${this.fecha.getFecha()}, ${this.hora.getFormato24()}, 
-        Dr. ${this.doctor.nombre.apellidoPaterno}, ${this.paciente.nombre.getNombreCompleto()}`;
+    getPerfil(){
+        return (`${this._fecha.getFecha()}, ${this._hora.getFormato24()}, Dr. ${this._doctor.getNombreCompleto()}, ${this._paciente.getNombreCompleto()}`);
     }
 }
